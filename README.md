@@ -24,7 +24,7 @@ The original sequencing reads are not redistributed in this repository.
 - `scripts/disruption/`: Gene-disruption analysis.
 - `scripts/pangenome/`: Pangenome integration and associated analyses.
 - `scripts/structural_variation/`: Structural interval validation.
-- `scripts/statistical_analysis/`: Reserved for verified model code.
+- `scripts/statistical_analysis/`: Verified Table 3 regression code.
 - `scripts/figures/`: Manuscript figure-generation scripts.
 - `scripts/validation/`: Final computational audits.
 - `data/derived/`: Selected analysis and plotting datasets.
@@ -40,14 +40,20 @@ The repository includes the derived statistical estimates used in
 Figure 3. These estimates were transcribed from the manuscript into
 the plotting script.
 
-The original statistical model-fitting code has not yet been
-reconciled with the archived inputs and outputs.
+The three negative-binomial models underlying Table 3 have been
+reproduced from the archived per-isolate analysis dataset using:
 
-Consequently, the Figure 3 script reproduces the visualisation
-of reported estimates, not an independent refitting of the
-underlying statistical model.
+`scripts/statistical_analysis/01_reproduce_disruption_models.R`
 
-This limitation will be updated when the model provenance is verified.
+The reproduced estimates and model diagnostics are available in
+`results/model_verification/`.
+
+Figure 3 currently uses a separate plotting dataset containing
+estimates transcribed from the manuscript. Its correspondence to
+the verified model-output table requires a final plotting-input audit.
+
+The archived statistical analysis does not independently regenerate
+the underlying per-isolate dataset from raw sequencing reads.
 
 ## Input configuration
 

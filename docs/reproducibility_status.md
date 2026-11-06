@@ -85,3 +85,34 @@ relative to the manuscript's smaller assessed core interval.
 
 Exact nucleotide-level junction validation and independent
 population replication have not been demonstrated.
+
+## Additional completed verification
+
+### Candidate gene-state reconciliation
+
+Archived isolate-level gene-state records were independently
+summarised for whiB3, yrbE3B, htpG and fadD15.
+
+The analysis found no duplicate sample-gene records among
+the evaluated genes.
+
+Aggregate counts were reconciled. Isolate-level concordance
+between specific nonsense variants and gene-state classifications
+has not been independently established.
+
+See docs/priority_gene_state_validation.md.
+
+### Final assembly-QC verification
+
+The integrated assembly-QC dataset contains 500 unique sample
+identifiers matching the 500 Panaroo sample identifiers.
+
+All seven evaluated QC metrics were available for every assembly.
+
+The panel comprises 445 original QC records and 55 replacement
+assembly records.
+
+The independently recomputed descriptive statistics agree with
+the archived final 500-assembly QC summary.
+
+See docs/assembly_QC_validation.md.
