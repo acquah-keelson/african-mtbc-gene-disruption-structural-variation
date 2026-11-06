@@ -1,41 +1,67 @@
-from pathlib import Path
-import os
+#!/usr/bin/env python3
 
-import numpy as np
-import pandas as pd
+from pathlib import Path
+
 import matplotlib
 matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
-m4 = Path(os.environ["O3"]) / "manuscript4_final"
-figdir = m4 / "02_figures"
-datadir = m4 / "03_figure_data"
+ROOT = Path(__file__).resolve().parents[2]
 
-figdir.mkdir(parents=True, exist_ok=True)
-datadir.mkdir(parents=True, exist_ok=True)
-
-# Estimates transcribed from the final manuscript.
-# Missing crude estimates are intentionally not imputed.
-rows = [
-    ("L1", "Adjusted", 0.94, 0.905, 0.976),
-    ("L2", "Adjusted", 1.22, 1.177, 1.268),
-    ("L3", "Adjusted", 0.99, 0.959, 1.022),
-    ("L5", "Adjusted", 1.15, 1.084, 1.216),
-    ("L6", "Adjusted", 1.23, 1.187, 1.274),
-    ("L5", "Crude", 3.00, 2.81, 3.20),
-    ("L6", "Crude", 3.29, 3.16, 3.43),
-]
-
-df = pd.DataFrame(
-    rows,
-    columns=["lineage", "model", "RR", "lower", "upper"]
+SOURCE = (
+    ROOT
+    / "results/model_verification"
+    / "Table3_reproduced_rate_ratios.tsv"
 )
+
+FIGDIR = ROOT / "results/figures"
+DATADIR = ROOT / "data/derived"
+
+FIGDIR.mkdir(parents=True, exist_ok=True)
+DATADIR.mkdir(parents=True, exist_ok=True)
+
+# Read independently reproduced regression results.
+models = pd.read_csv(SOURCE, sep="\t")
+
+models["model"] = models["model"].replace({
+    "Divergence_scaled": "Adjusted"
+})
+
+# Preserve the lineage contrasts shown in the manuscript figure.
+adjusted_lineages = ["L1", "L2", "L3", "L5", "L6"]
+crude_lineages = ["L5", "L6"]
+
+df = models[
+    (
+        (models["model"] == "Adjusted")
+        & models["lineage"].isin(adjusted_lineages)
+    )
+    |
+    (
+        (models["model"] == "Crude")
+        & models["lineage"].isin(crude_lineages)
+    )
+].copy()
+
+assert len(df) == 7, "Expected seven Figure 3 estimates."
+
+df = df.rename(columns={
+    "CI_lower": "lower",
+    "CI_upper": "upper"
+})
+
+df = df[
+    ["lineage", "model", "RR", "lower", "upper"]
+].copy()
 
 assert (df["lower"] <= df["RR"]).all()
 assert (df["RR"] <= df["upper"]).all()
 
 df.to_csv(
-    datadir / "Figure3_model_estimates.tsv",
+    DATADIR / "Figure3_model_estimates.tsv",
     sep="\t",
     index=False
 )
@@ -59,6 +85,7 @@ for model, offset, marker, color in [
     subset = df[df["model"] == model]
 
     for _, r in subset.iterrows():
+
         y = ypos[order.index(r["lineage"])] + offset
 
         ax.errorbar(
@@ -84,6 +111,7 @@ ax.axvline(
 )
 
 ax.set_yticks(ypos, order)
+
 ax.set_xlabel("Rate ratio (95% confidence interval)")
 ax.set_ylabel("MTBC lineage")
 ax.set_xscale("log")
@@ -100,14 +128,16 @@ from matplotlib.lines import Line2D
 ax.legend(
     handles=[
         Line2D(
-            [0], [0], marker="s",
+            [0], [0],
+            marker="s",
             color="#999999",
             linestyle="None",
             label="Crude",
             markersize=7
         ),
         Line2D(
-            [0], [0], marker="o",
+            [0], [0],
+            marker="o",
             color="#225588",
             linestyle="None",
             label="Adjusted",
@@ -119,14 +149,24 @@ ax.legend(
 )
 
 ax.grid(axis="x", alpha=0.15)
+
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 
 fig.tight_layout()
 
 for ext in ["pdf", "svg", "png"]:
-    path = figdir / f"Figure3_disruption_forest.{ext}"
-    fig.savefig(path, dpi=400, bbox_inches="tight")
+
+    path = FIGDIR / f"Figure3_disruption_forest.{ext}"
+
+    fig.savefig(
+        path,
+        dpi=400,
+        bbox_inches="tight"
+    )
+
     print("Saved:", path)
 
 plt.close(fig)
+
+print("Figure 3 generated from verified regression outputs.")
