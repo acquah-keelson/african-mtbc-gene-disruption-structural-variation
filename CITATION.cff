@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this computational research repository, please cite the archived software release."
+type: software
+
+title: "Population Genomics of Gene Disruption and Structural Variation in African MTBC Lineages: Reproducibility Code"
+
+authors:
+  - family-names: "Acquah-Keelson"
+    given-names: "Amanquador"
+
+version: 1.0.0
+
+
+keywords:
+  - comparative genomics
+  - genomic epidemiology
+  - pangenome
+  - gene disruption
+  - structural variation
+  - bioinformatics
+  - reproducibility
+

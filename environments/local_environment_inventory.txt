@@ -1,0 +1,30 @@
+===== DATE =====
+Fri Nov  6 03:57:10 PM UTC 2026
+
+===== PYTHON =====
+Python 3.10.12
+
+===== R =====
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+
+===== BIOINFORMATICS TOOLS =====
+
+samtools:
+/usr/bin/samtools
+
+bcftools:
+/usr/bin/bcftools
+
+mosdepth:
+
+minimap2:
+/usr/bin/minimap2
+
+panaroo:
+
+bakta:
+
+quast.py:
+
+===== CONDA ENVIRONMENTS =====

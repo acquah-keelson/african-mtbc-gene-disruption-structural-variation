@@ -11,9 +11,10 @@
 set -euo pipefail
 
 # --------------------------- EDIT ME: paths ----------------------------------
-REF_FASTA="/home/seqafrica/projects/tb_africa_qc/objectives/objective3_pangenome_disruption/01_inputs/references/h37rv/GCF_000195955.2_ASM19595v2_genomic.fna"
-REF_GFF="/home/seqafrica/projects/tb_africa_qc/objectives/objective3_pangenome_disruption/01_inputs/references/h37rv/GCF_000195955.2_ASM19595v2_genomic.gff"
-VCF_DIR="/media/seqafrica/T7 Shield/ext/vcf_markdup_qcpass/filtered"
+# Required input locations are supplied through environment variables.
+: "${REF_FASTA:?Set REF_FASTA to the reference genome FASTA}"
+: "${REF_GFF:?Set REF_GFF to the reference genome GFF}"
+: "${VCF_DIR:?Set VCF_DIR to the directory containing filtered VCF files}"
 VCF_SUFFIX=".filtered.vcf.gz"
 CLASSIFY_SCRIPT="$(dirname "$0")/02_classify_gene_disruption.py"
 # -------------------------------------------------------------------------------
