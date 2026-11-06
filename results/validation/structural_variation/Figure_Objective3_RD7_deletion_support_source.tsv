@@ -1,0 +1,3 @@
+rd_sv_cluster_id	comparison_group	lineage	n_genomes	n_explicit_deletion_overlap	pct_explicit_deletion_overlap	n_deletion_contains_entire_region	pct_deletion_contains_entire_region	median_deletion_start_1based	median_deletion_end_1based	median_deletion_bp	min_deletion_bp	max_deletion_bp	most_common_start	n_most_common_start	most_common_end	n_most_common_end	median_overlap_fraction	display
+RDCLUSTER_0008	target	lineage6	75	75	100.0	75	100.0	2208006.0	2220724.0	12719.0	12719.0	12719.0	2208006.0	75	2220724.0	75	1.0	L6 target
+RDCLUSTER_0008	L4_reference	lineage4	125	5	4.0	0	0.0	2212797.0	2212812.0	4.0	1.0	147.0	2212798.0	1	2212812.0	1	0.0	L4 reference

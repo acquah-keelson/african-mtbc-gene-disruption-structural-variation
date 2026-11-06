@@ -15,7 +15,7 @@ validation tables and manuscript figures associated with Objective 3.
 
 ## Outstanding verification
 
-1. Recover or independently verify the original regression model code.
+1. COMPLETED: Reproduced all three Table 3 negative-binomial models from the archived per-isolate dataset.
 2. Reconcile cohort lineage assignments across analytical datasets.
 3. Confirm the authoritative manuscript figure package.
 4. Identify the generating source for Figure 4.
@@ -60,3 +60,28 @@ regenerate that dataset from raw sequencing reads.
 The divergence-scaled model imposes a unit coefficient on the
 logarithm of synonymous substitution count through an offset.
 Its estimates are conditional on this assumption.
+
+## RD7/mce3 structural verification
+
+Archived CIGAR-aware and explicit-deletion outputs were
+examined for RDCLUSTER_0008.
+
+All 75 assessed Lineage 6 assemblies were classified as
+near_absent_limited_flank_support.
+
+The explicit-deletion summary and sample-level audit
+reported deletion containment across the assessed interval
+in all 75 Lineage 6 assemblies.
+
+No corresponding whole-interval deletion was reported
+among the 125 Lineage 4 comparison assemblies.
+
+Supporting validation tables are archived under:
+
+results/validation/structural_variation/
+
+The inferred deletion coordinates require clarification
+relative to the manuscript's smaller assessed core interval.
+
+Exact nucleotide-level junction validation and independent
+population replication have not been demonstrated.
