@@ -34,3 +34,29 @@ not independently fit the statistical model.
 The repository is under preparation.
 
 Complete end-to-end reproducibility has not yet been demonstrated.
+
+## Table 3 independent model reproduction
+
+The negative-binomial regression estimates were reproduced from
+data/derived/01_model_analysis_data.tsv using the archived R script:
+
+scripts/statistical_analysis/01_reproduce_disruption_models.R
+
+Three models were reproduced:
+
+1. Crude lineage model: n = 3,227, theta = 10.790.
+2. Divergence-scaled model: n = 3,225, theta = 14.720.
+3. PRJEB36076 sensitivity model: n = 449, theta = 446.123.
+
+All models converged.
+
+The resulting rate ratios and Wald confidence intervals agree with
+Table 3 of the manuscript to the reported precision.
+
+This verification reproduces the statistical models from the
+archived per-isolate analysis dataset. It does not independently
+regenerate that dataset from raw sequencing reads.
+
+The divergence-scaled model imposes a unit coefficient on the
+logarithm of synonymous substitution count through an offset.
+Its estimates are conditional on this assumption.
