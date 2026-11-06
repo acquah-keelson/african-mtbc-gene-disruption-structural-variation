@@ -1,0 +1,7 @@
+check	description	status
+SNP consequences	compare VCF allele, codon, annotation for Rv3416 pos 3835102 and Rv1965 pos 2208538	NOT_AUTOMATED
+Genome-wide matched control	restrict nonsense SNP to same 3705 eligible genes; handle callable positions and indels	NOT_AUTOMATED
+Models	convergence, study effects, phylogenetic non-independence, CI and adjusted estimates	NOT_AUTOMATED
+Breakpoint evidence	review per-base read-depth edges; do not claim junction validated without junction reads	NOT_AUTOMATED
+Historical RDs	confirm coordinate build, aliases and published reference coordinates	NOT_AUTOMATED
+Figures and tables	reproduce 4 figure panels, all final table cells and legends	NOT_AUTOMATED
